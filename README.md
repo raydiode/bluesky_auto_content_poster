@@ -42,7 +42,7 @@ AutoContentPoster is a Python-based automation tool for managing and posting con
 ## Setup Instructions
 1. Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/AutoContentPoster.git
+   git clone https://github.com/raydiode/bluesky_auto_content_poster.git
    cd AutoContentPoster
    ```
 
