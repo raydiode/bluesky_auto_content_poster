@@ -1,3 +1,4 @@
+# src/db_setup.py
 import sqlite3
 from config import DB_PATH, REQUIRED_DIRS
 
@@ -10,7 +11,7 @@ def setup_directories():
 def setup_database():
     """Initialize the SQLite database with required schema"""
     setup_directories()
-
+    
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
@@ -27,4 +28,3 @@ def setup_database():
     conn.commit()
     conn.close()
     print(f"Database setup complete at: {DB_PATH}")
-
