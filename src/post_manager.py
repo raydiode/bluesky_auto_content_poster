@@ -88,21 +88,21 @@ class PostManager:
             ''')
         return cursor.fetchall()
 
-    def reset_test_mode(self):
-        """Reset system state after test mode"""
+    def reset_test_mode(self, session_start_time):
+        """Reset system state after test mode, only for posts marked during this session"""
         print("\nResetting test mode...")
-        
+
         with self._get_db_connection() as conn:
             cursor = conn.cursor()
-            # Reset all 'posted' statuses back to 'ready'
+            # Reset only posts that were marked as posted during this test session
             cursor.execute('''
-                UPDATE posts 
-                SET status = 'ready', 
-                    posted_at = NULL 
+                UPDATE posts
+                SET status = 'ready',
+                    posted_at = NULL
                 WHERE status = 'posted'
-            ''')
+                AND posted_at >= ?
+        ''', (session_start_time,))
             reset_count = cursor.rowcount
-            
-                        
+
             print(f"Reset complete:")
             print(f"- {reset_count} posts reset to 'ready' status")
