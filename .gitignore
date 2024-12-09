@@ -4,3 +4,5 @@ __pycache__/
 .env 
 venv/
 posts/
+database/content.db
+history
